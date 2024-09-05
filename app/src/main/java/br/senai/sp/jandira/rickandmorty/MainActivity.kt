@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                                 arguments = listOf(navArgument("userId") {
                                     type = NavType.StringType
                                 })
-                            ){ CharacterDetails(navController) }
+                            ){ backStackEntry -> CharacterDetails(navController, backStackEntry.arguments?.getString("userId")) }
                         }
 
                 }

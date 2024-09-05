@@ -39,15 +39,33 @@ import retrofit2.Response
 
 
 @Composable
-fun CharacterDetails(navController: NavHostController) {
+fun CharacterDetails(navController: NavHostController, id: String?) {
 
-    var id by remember {
-        mutableStateOf("")
-    }
+    var idCharacter = id!!
+    println(id)
 
     var character by remember{
         mutableStateOf(Character())
     }
+
+    val callCharacter = RetrofitFactory()
+        .getCharacterService()
+        .getCharacterById(idCharacter.toInt())
+
+    callCharacter.enqueue(object : Callback<Character> {
+        override fun onResponse(p0: Call<Character>, response: Response<Character>) {
+            if(response.code() == 404){
+                character = Character()
+            }else{
+                character = response.body()!!
+            }
+
+        }
+        override fun onFailure(p0: Call<Character>, p1: Throwable) {
+
+        }
+    })
+
     Surface(
         modifier = Modifier
             .fillMaxSize(),
