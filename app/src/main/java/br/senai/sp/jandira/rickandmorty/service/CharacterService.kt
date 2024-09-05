@@ -2,6 +2,7 @@ package br.senai.sp.jandira.rickandmorty.service
 
 import br.senai.sp.jandira.rickandmorty.model.Character
 import br.senai.sp.jandira.rickandmorty.model.Info
+import br.senai.sp.jandira.rickandmorty.model.Result
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,7 +17,7 @@ interface CharacterService {
     //Call - retorna a chamada que devolve um personagem
 
     @GET("character")
-    fun getAllCharacters(): Call<List<Character>>
+    fun getAllCharacters(): Call<Result>
 
     @POST("character")
     fun saveCharacter(@Body character: Character): Call<Character>
