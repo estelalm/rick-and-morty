@@ -34,10 +34,10 @@ class MainActivity : ComponentActivity() {
                             startDestination = "listCharacters") {
                             composable(route = "listCharacters"){ ListAllCharacters(navController)}
                             composable(route = "characterDetails/{characterId}",
-                                arguments = listOf(navArgument("userId") {
+                                arguments = listOf(navArgument("characterId") {
                                     type = NavType.StringType
                                 })
-                            ){ backStackEntry -> CharacterDetails(navController, backStackEntry.arguments?.getString("userId")) }
+                            ){ backStackEntry -> CharacterDetails(navController, backStackEntry.arguments?.getString("characterId")) }
                         }
 
                 }

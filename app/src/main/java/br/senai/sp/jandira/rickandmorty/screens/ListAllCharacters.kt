@@ -92,7 +92,7 @@ fun CharacterCard(character : Character, navController: NavHostController) {
         .height(100.dp)
         .clickable {
       //      navController.navigate("characterDetails/${character.id}")
-            navController.navigate("characterDetails/userId")
+            navController.navigate("characterDetails/${character.id}")
         },
         colors = CardDefaults.cardColors(containerColor = Color(0xE8FFFFFF)),
         border = BorderStroke(2.dp, Color(0xFFC5205A))

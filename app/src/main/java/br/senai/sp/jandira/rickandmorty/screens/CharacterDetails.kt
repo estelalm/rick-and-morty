@@ -2,6 +2,7 @@ package br.senai.sp.jandira.rickandmorty.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +12,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.twotone.ArrowBack
 import androidx.compose.material.icons.twotone.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -26,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,10 +44,10 @@ import retrofit2.Response
 
 
 @Composable
-fun CharacterDetails(navController: NavHostController, id: String?) {
+fun CharacterDetails(navController: NavHostController, characterId: String?) {
 
-    var idCharacter = id!!
-    println(id)
+    var idCharacter = characterId!!
+    println(characterId)
 
     var character by remember{
         mutableStateOf(Character())
@@ -79,6 +84,14 @@ fun CharacterDetails(navController: NavHostController, id: String?) {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
 
+            Spacer(modifier = Modifier.height(12.dp))
+            Row (modifier = Modifier.fillMaxWidth()){
+                IconButton(onClick = {
+                    navController.navigate("listCharacters")
+                }) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Voltar", tint = Color.Black)
+                }
+            }
             Spacer(modifier = Modifier.height(64.dp))
             Card (
                 modifier = Modifier
@@ -96,14 +109,14 @@ fun CharacterDetails(navController: NavHostController, id: String?) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text =
-                if(character.name == "") "Personagem não encontrado"
-                else character.name
+                if(character.name == "") "Buscando personagem..."
+                else "Name: " + character.name
             )
             Text(
-                text = character.species
+                text = "Species: " + character.species
             )
             Text(
-                text = character.status
+                text = "Status: " + character.status
             )
         }
     }
