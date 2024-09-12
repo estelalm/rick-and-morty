@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.rickandmorty.service
 
 import br.senai.sp.jandira.rickandmorty.model.Character
+import br.senai.sp.jandira.rickandmorty.model.Episode
 import br.senai.sp.jandira.rickandmorty.model.Info
 import br.senai.sp.jandira.rickandmorty.model.Result
 import retrofit2.Call
@@ -21,4 +22,8 @@ interface CharacterService {
 
     @POST("character")
     fun saveCharacter(@Body character: Character): Call<Character>
+
+    //episode
+    @GET("episode/{id}")
+    fun getEpisodeById(@Path("id") id: Int): Call <Episode>
 }
