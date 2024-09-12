@@ -52,6 +52,9 @@ android {
 
 dependencies {
 
+        implementation(platform("androidx.compose:compose-bom:2023.10.01"))
+        implementation("androidx.compose.foundation:foundation:1.6.0-beta01")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

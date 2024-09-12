@@ -159,7 +159,7 @@ fun CharacterDetails(navController: NavHostController, characterId: String?) {
 
                     val callEpisodeById = RetrofitFactory()
                         .getCharacterService()
-                        .getEpisodeById(episodes[id])
+                        .getEpisodeById(id) //
 
                     callEpisodeById.enqueue(object : Callback<Episode> {
                         override fun onResponse(p0: Call<Episode>, response: Response<Episode>) {
